@@ -17,8 +17,8 @@ def sine_moel(X,a,b,c,d):
   return a*np.sin(b*(X+c)*(np.pi/720))+d
 #전처리된 파일 업로드
 try:
-    df_1940 = pd.read_csv("df_1940(최종).csv")
-    df_2025 = pd.read_csv("df_2025(최종).csv")
+    df_1940 = pd.read_csv("1940_최종.csv")
+    df_2025 = pd.read_csv("2025_최종.csv")
 except FileNotFoundError:
     st.error("⚠️ '1940_최종.csv' 또는 '2025_최종.csv' 파일을 찾을 수 없습니다. 두 파일이 app.py와 같은 폴더에 업로드되어 있는지 확인해 주세요.")
     st.stop()
