@@ -14,9 +14,6 @@ def sine_moel(X,a,b,c,d):
 try:
     df_1940 = pd.read_csv("df_1940(최종).csv")
     df_2025 = pd.read_csv("df_2025(최종).csv")
-except FileNotFoundError:
-    st.error("⚠️ 파일을 찾을 수 없습니다. 두 정제된 파일이 app.py와 같은 깃허브 저장소 폴더에 업로드되어 있는지 확인해 주세요.")
-    st.stop()
 target_col="평균기온(℃)"
 y_label=　기온(℃)
 graph_title= "1940년과 2025년 서울 평균기온 삼각함수 모형 비교"
