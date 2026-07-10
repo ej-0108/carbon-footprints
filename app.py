@@ -15,7 +15,7 @@ def sine_moel(X,a,b,c,d):
 try:
     df_1940 = pd.read_csv("df_1940(최종).csv")
     df_2025 = pd.read_csv("df_2025(최종).csv")
-  except FileNotFoundError:
+except FileNotFoundError:
     st.error("⚠️ '1940_최종.csv' 또는 '2025_최종.csv' 파일을 찾을 수 없습니다. 두 파일이 app.py와 같은 폴더에 업로드되어 있는지 확인해 주세요.")
     st.stop()
 target_col="평균기온(℃)"
@@ -65,7 +65,6 @@ try:
     # 5. 연평균 중심값(d) 변화 분석 결과 자동 출력
     diff_d = popt_2025[3] - popt_1940[3]
     st.success(f"💡 **수학적 모형 분석 결과:** 서울의 연평균 기온 중심값(`d`)이 1940년({popt_1940[3]:.1f}℃) 대비 2025년({popt_2025[3]:.1f}℃)에 **{abs(diff_d):.2f}℃ 상승**했음을 확인할 수 있습니다.")
-
 except Exception as e:
     st.error(f"수식 연산 및 그래프를 생성하는 중에 오류가 발생했습니다: {e}")
   
