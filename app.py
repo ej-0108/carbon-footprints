@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-fromgraph_sine import show_sine_tab
+from graph_sine import show_sine_tab
+from graph_moving_average import show_moving_average_tab
+from graph_digital_carbon import show_carbon_calculator_tab
 
 # 웹페이지 기본 설정
 st.set_page_config(page_title="클래스 스텝 업 / 기후 위기", layout="centered")
@@ -28,3 +30,5 @@ with tab1:
   show_sine_tab(df_1940, df_2025, "평균기온(℃)")
 with tab2:
   show_moving_average_tab(df_1940, df_2025, target_col)
+  with tab3:
+    show_carbon_calculator_tab()
