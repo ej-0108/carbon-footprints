@@ -9,10 +9,9 @@ from graph_digital_carbon import show_carbon_calculator_tab
 st.set_page_config(page_title="클래스 스텝 업 / 기후 위기", layout="centered")
 
 #웹사이트 타이틀 및 설명
-st.title("🌱")
+st.title("🌱기후 위기, 얼마나 아시나요?")
 
 #수정할 것 
-st.markdown("**기후 위기, 얼마나 아시나요?**")
 st.write("3개의 탭으로 기후 위기를 설명하고자 합니다.")
 st.write("삼각함수로 보는 한국 기후 : 한국의 기후 변화를 삼각함수 기반 그래프로 볼 수 있습니다. 삼각함수의 계수를 통해 기후 변화를 직관적으로 이해할 수 있습니다.")
 st.write("이동평균선으로 보는 한국 기후 : 한국의 기후 변화를 이동평균선 기반 그래프로 볼 수 있습니다. 삼각함수에 비해 사실적입니다.")
