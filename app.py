@@ -24,6 +24,7 @@ df_1940 = pd.read_csv("1940_최종.csv",encoding="cp949")
 df_2025 = pd.read_csv("2025_최종.csv",encoding="cp949")
 
 #탭
+target_col = "평균기온(℃)"
 tab1, tab2, tab3 =st.tabs(["삼각함수로 보는 한국 기후", "이동평균선으로 보는 한국 기후", "디지털 기기 사용시간에 따른 기후 위기"])
 with tab1:
   show_sine_tab(df_1940, df_2025, "평균기온(℃)")
