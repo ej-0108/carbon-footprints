@@ -28,6 +28,10 @@ except UnicodeDecodeError:
         st.error(f"⚠️ 파일 인코딩 에러가 지속됩니다: {e}")
         st.stop()
 def show_sine_tab(df_1940, df_2025, target_col):
+  if 'julian_date' not in df_1940.columns:
+        df_1940['julian_date'] = range(1, len(df_1940) + 1)
+  if 'julian_date' not in df_2025.columns:
+        df_2025['julian_date'] = range(1, len(df_2025) + 1)
   target_col="평균기온(℃)"
   y_label="기온(℃)"
   graph_title= "1940년과 2025년 서울 평균기온 삼각함수 모형 비교"
