@@ -27,49 +27,48 @@ except UnicodeDecodeError:
     except Exception as e:
         st.error(f"⚠️ 파일 인코딩 에러가 지속됩니다: {e}")
         st.stop()
-target_col="평균기온(℃)"
-y_label="기온(℃)"
-graph_title= "1940년과 2025년 서울 평균기온 삼각함수 모형 비교"
-initial_guess=[18,4,246.0,12.0]
-# =========================================================================
-# 3. 평균기온 전용 설정값 고정 (사이드바 및 선택 기능 제거)
-# =========================================================================
-target_col = "평균기온(℃)"
-y_label = "Temperature (Celsius)"
-initial_guess = [18.0, 3.95, -119.0, 12.0]  # 실제 데이터 기반 검증된 초기 추정값 [a, b, c, d]
+def show_sine_tab(df_1940, df_2025, target_col):
+  target_col="평균기온(℃)"
+  y_label="기온(℃)"
+  graph_title= "1940년과 2025년 서울 평균기온 삼각함수 모형 비교"
+  initial_guess=[18,4,246.0,12.0]
+  # 3. 평균기온 전용 설정값 고정 (사이드바 및 선택 기능 제거)
+  target_col = "평균기온(℃)"
+  y_label = "Temperature (Celsius)"
+  initial_guess = [18.0, 3.95, -119.0, 12.0]  # 실제 데이터 기반 검증된 초기 추정값 [a, b, c, d]
 
-# =========================================================================
-# 4. SciPy 연산 및 그래프 즉시 출력
-# =========================================================================
-try:
-    # SciPy curve_fit을 이용해 오차가 가장 적은 최적의 a, b, c, d 상수 도출
-    popt_1940, _ = curve_fit(sine_model, df_1940['julian_date'], df_1940[target_col], p0=initial_guess, maxfev=10000)
-    popt_2025, _ = curve_fit(sine_model, df_2025['julian_date'], df_2025[target_col], p0=initial_guess, maxfev=10000)
+  # =========================================================================
+  # 4. SciPy 연산 및 그래프 즉시 출력
+  # =========================================================================
+  try:
+      # SciPy curve_fit을 이용해 오차가 가장 적은 최적의 a, b, c, d 상수 도출
+      popt_1940, _ = curve_fit(sine_model, df_1940['julian_date'], df_1940[target_col], p0=initial_guess, maxfev=10000)
+      popt_2025, _ = curve_fit(sine_model, df_2025['julian_date'], df_2025[target_col], p0=initial_guess, maxfev=10000)
     
-    # 1일부터 365일까지 끊어지지 않는 매끄러운 곡선용 가상 X축 데이터 생성
-    x_curve = np.linspace(1, 365, 500)
-    y_curve_1940 = sine_model(x_curve, *popt_1940)
-    y_curve_2025 = sine_model(x_curve, *popt_2025)
+      # 1일부터 365일까지 끊어지지 않는 매끄러운 곡선용 가상 X축 데이터 생성
+      x_curve = np.linspace(1, 365, 500)
+      y_curve_1940 = sine_model(x_curve, *popt_1940)
+      y_curve_2025 = sine_model(x_curve, *popt_2025)
     
-    # 메인 그래프 생성
-    fig, ax = plt.subplots(figsize=(11, 5))
+      # 메인 그래프 생성
+      fig, ax = plt.subplots(figsize=(11, 5))
     
-    # 1) 실제 날짜별 평균기온 데이터 점 (산점도 - 흐리게 처리)
-    ax.scatter(df_1940['julian_date'], df_1940[target_col], color='blue', alpha=0.12, label='1940 Raw Data')
-    ax.scatter(df_2025['julian_date'], df_2025[target_col], color='red', alpha=0.12, label='2025 Raw Data')
+      # 1) 실제 날짜별 평균기온 데이터 점 (산점도 - 흐리게 처리)
+      ax.scatter(df_1940['julian_date'], df_1940[target_col], color='blue', alpha=0.12, label='1940 Raw Data')
+      ax.scatter(df_2025['julian_date'], df_2025[target_col], color='red', alpha=0.12, label='2025 Raw Data')
     
-    # 2) 수학적으로 추정된 매끄러운 사인 함수 곡선 추가
-    ax.plot(x_curve, y_curve_1940, color='blue', linewidth=2.5, label='1940 Sine Model')
-    ax.plot(x_curve, y_curve_2025, color='red', linewidth=2.5, label='2025 Sine Model')
+      # 2) 수학적으로 추정된 매끄러운 사인 함수 곡선 추가
+      ax.plot(x_curve, y_curve_1940, color='blue', linewidth=2.5, label='1940 Sine Model')
+      ax.plot(x_curve, y_curve_2025, color='red', linewidth=2.5, label='2025 Sine Model')
     
-    # 그래프 스타일 세팅
-    ax.set_xlabel("Day of the Year (Julian Date)")
-    ax.set_ylabel(y_label)
-    ax.legend(loc="upper right")
-    ax.grid(True, linestyle=':', alpha=0.5)
+      # 그래프 스타일 세팅
+      ax.set_xlabel("Day of the Year (Julian Date)")
+      ax.set_ylabel(y_label)
+      ax.legend(loc="upper right")
+      ax.grid(True, linestyle=':', alpha=0.5)
     
-    # 스트림릿 웹 화면에 그래프 출력
-    st.pyplot(fig)
+      # 스트림릿 웹 화면에 그래프 출력
+      st.pyplot(fig)
     
     # 분석
     st.subheader("연도별 삼각함수식")
