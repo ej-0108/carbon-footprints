@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 from graph_sine import show_sine_tab
 from graph_moving_average import show_moving_average_tab
 from graph_digital_carbon import show_carbon_calculator_tab
