@@ -99,5 +99,5 @@ def show_sine_tab(df_1940, df_2025, target_col):
       > 실제로 한반도의 봄은 일찍 시작되어 벌과 나비가 활동하기 전에 꽃이 지게 됩니다.
       """)
             
-except Exception as e:
+  except Exception as e:
     st.error(f"수식 연산 및 그래프를 생성하는 중에 오류가 발생했습니다: {e}")
