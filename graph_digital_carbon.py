@@ -29,7 +29,7 @@ def show_carbon_calculator_tab():
     st.markdown(f"""
     > 하루 평균 {user_hours}시간 사용 습관이 1년간 지속될 경우:
     > * 나의 연간 디지털 탄소 배출량: :red[{user_annual_co2:.1f} kg]
-    > * 이는 UN이 제시한 1인당 연간 총 탄소 예산({UN_ANNUAL_BUDGET_KG:,.0f} kg)의 **:orange[{percentage:.1f}%]**를 차지합니다.
+    > * 이는 UN이 제시한 1인당 연간 총 탄소 예산({UN_ANNUAL_BUDGET_KG:,.0f} kg)의 :orange[{percentage:.1f}%]를 차지합니다.
     """)
     
     st.write("---")
