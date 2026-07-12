@@ -28,6 +28,6 @@ tab1, tab2, tab3 =st.tabs(["삼각함수로 보는 한국 기후", "이동평균
 with tab1:
   show_sine_tab(df_1940, df_2025, "평균기온(℃)")
 with tab2:
-  show_moving_average_tab(df_1940, df_2025, target_col="평균기온(℃))
+  show_moving_average_tab(df_1940, df_2025, target_col)
 with tab3:
     show_carbon_calculator_tab()
