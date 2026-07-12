@@ -82,11 +82,11 @@ try:
     # 분석
     st.subheader("연도별 삼각함수식")
     col1, col2 = st.columns(2)
-        with col1:
+    with col1:
             st.markdown("##### :blue[1940년 서울 기온 추세식]")
             st.latex(r"y = %.2f \sin\left(\frac{2\pi}{365}(X %+.1f)\right) %+.2f" % (a_40, c_40, d_40))
             
-        with col2:
+    with col2:
             st.markdown("##### :red[2025년 서울 기온 추세식]")
             st.latex(r"y = %.2f \sin\left(\frac{2\pi}{365}(X %+.1f)\right) %+.2f" % (a_25, c_25, d_25))
             
